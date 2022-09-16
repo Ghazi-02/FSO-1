@@ -1,67 +1,54 @@
 
-// const App = () => {
-// const now = new Date();
-// const a = 10;
-// const b = 20;
+// const Hello = ({ name, age }) => {
+//   const bornYear = () => new Date().getFullYear() - age
+
 //   return (
 //     <div>
-//       <p>Hello world, it is {now.toString()}</p>
 //       <p>
-//         {a} plus {b} is {a + b}
+//         Hello {name}, you are {age} years old
 //       </p>
+//       <p>So you were probably born in {bornYear()}</p>
 //     </div>
 //   )
 // }
-
-// import React from 'react'
 // const App = () => {
-//   const now = new Date();
-//   const a = 10;
-//   const b = 20;
-//   return React.createElement(
-//     'div',
-//      null,
-//     React.createElement(
-//       'p', null, 'Hello world, it is ', now.toString()
-//     ),
-//     React.createElement(
-//         'p', null, a, ' plus ', b, " is ", a + b
-//     )
+//   const name = "Peter";
+//   const age = 10;
+
+//   return (
+//     <>
+//       <h1>Greetings</h1>
+//       <Hello name="Maya" age={26 + 10} />
+//       <Hello name={name} age={age} />
+
+//     </>
+
 //   )
 // }
 
-const Hello = (props) => {
-  return (
-    <div>
-        <p>Hello {props.name}, you are {props.age} years old</p>
-    </div>
-  )
+const Display = ({counter}) => <div>{counter}</div>
 
-}
-const Footer = () => {
-  return (
-    <div>
-      greetings app created by <a href ="https://github.com/Ghazi-02">Ghazi-02</a>
-    </div>
+const Button = ({onClick, text}) =>  <button onClick={onClick}>{text}</button>
+  
 
-  )
 
-}
-
+import { useState } from 'react'
 
 const App = () => {
-  const name = "Peter";
-  const age = 10;
-  
+  const [counter, setCounter] = useState(0)
+  const increaseByOne = () => setCounter(counter + 1)
+  const decreaseByOne = () => setCounter(counter - 1)
+  const setToZero = () => setCounter(0)
+
   return (
     <>
-      <h1>Greetings</h1>
-      <Hello name="Maya" age={26 + 10} />
-      <Hello name = {name} age={age} />
-      <Footer />
+      <Display counter={counter} />
+      <Button onClick={increaseByOne} text="Plus" />
+      <Button onClick={decreaseByOne} text="Minus" />
+      <Button onClick={setToZero} text='Zero' />
     </>
-  
   )
+
 }
 
 export default App
