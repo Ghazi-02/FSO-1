@@ -4,6 +4,18 @@ const Button = (props) => (
     {props.text}
   </button>
 )
+// const MostVotes = (props) => {
+
+//   return(
+
+//   <>
+//   <div>{props.</div>
+//   </>
+
+// )
+// }
+ 
+
 
 const App = () => {
   const anecdotes = [
@@ -18,22 +30,28 @@ const App = () => {
 
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
-
+  const [highestVotes,setHighestVote] = useState(0)
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <div> {anecdotes[selected]} Votes : {votes[selected]}</div>
 
       <Button handleClick={() => {
         const newVotes = [...votes]
         newVotes[selected] += 1
         setVotes([...newVotes])
+        setHighestVote(newVotes.indexOf(Math.max(...newVotes)))
+        console.log(newVotes)
       }} text="Vote" />
 
       <Button handleClick={() => setSelected(Math.floor(Math.random() * (anecdotes.length)))} text="Next Anecdote" />
-
+      <h1>Anecdote with most votes</h1>
+      <div>Anecdote: {anecdotes[highestVotes]}</div>
+      <div>Votes: {Math.max(...votes)}</div>
+      
+    
     </div>
   )
 }
-
 
 export default App
