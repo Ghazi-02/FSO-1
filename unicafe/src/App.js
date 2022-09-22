@@ -5,21 +5,30 @@ const Button = (props) => (
   </button>
 )
 const Statistics = (props) => {
- if(props.good === 0 && props.neutral === 0 && props.bad === 0) {
-  return <div>No feedback given</div>
- } else{
-  return( 
- <div>
-    <div>Good {props.good}</div>
-    <div>Neutral {props.neutral}</div>
-    <div>Bad {props.bad}</div>
-    <div>All {props.all}</div>
-    <div>Average {props.average}</div>
-    <div>Positive {props.positive}</div>
-  </div>
- )
+  if (props.good === 0 && props.bad === 0 && props.neutral === 0) {
+    return <div>No feedback given</div>
+  } else {
+    return (
+      <>
+        <StatisticsLine text="good" value={props.good} />
+        <StatisticsLine text="neutral" value={props.neutral} />
+        <StatisticsLine text="bad" value={props.bad} />
+        <StatisticsLine text="all" value={props.all} />
+        <StatisticsLine text="average" value={props.average} />
+        <StatisticsLine text="positive" value={props.positive} />
+      </>
+    )
   }
 }
+const StatisticsLine = (props) => {
+
+    return (
+      <div>
+        <div>{props.text} {props.value} </div>
+      </div>
+    )
+  }
+
 
 const App = () => {
   // save clicks of each button to its own state
